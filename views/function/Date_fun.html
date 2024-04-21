@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <!-- chage location file again (bootstrao+ java script) -->
+    <link rel="stylesheet" href="/public/CSS/bootstrap.min.css">
+    <script src="/public/JS/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sweetalert2@11.js"></script>
+</head>
+
+<body>
+ <!-- ***************************************   info  ***************************************** -->
+                        <h1 class="Topic" id="date"></h1>
+
+<!-- *******************************  script  ******************************** -->
+    <script>
+        var clickedDate = localStorage.getItem('clickedDate');
+        document.getElementById('date').textContent = clickedDate;
+    </script>
+
+</body>
+
+</html>

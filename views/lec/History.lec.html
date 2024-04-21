@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history</title>
+    <!-- chage location file again (bootstrao+ java script) -->
+    <link rel="stylesheet" href="/public/CSS/bootstrap.min.css">
+    <script src="/public/JS/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sweetalert2@11.js"></script>
+</head>
+<body>
+    <style>
+        .Topic{
+            position: fixed;
+            top: 60px;
+            left: 450px;
+            color: #0D6EFD;
+            font-size: 45px;
+        }
+        h3 {
+            font-weight: 400;
+        }
+        .list-group-item a:link,
+        a:visited {
+            margin-top: 20px;
+            color: black;
+            border: 2px solid none;
+            padding: 10px 20px;
+            text-align: start;
+            text-decoration: none;
+            display: inline-block;
+            width: 290px;
+            justify-content: center;
+        }
+        .list-group-item a:hover,
+        a:active {
+            background-color: #D9D9D9;
+        }
+        .link-text {
+            color: black;
+            margin-left: 15px;
+            font-size: 24px;
+        }
+        /* CSS สำหรับกำหนดสีและความยาวของเส้น */
+        .vertical-line {
+            border-left: 2px solid #D9D9D9;
+            height: 100%;
+            position: absolute;
+            left: 382px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            transform: translateX(-50%);
+        }
+        footer {
+            padding: 20px;
+            text-align: start;
+            z-index: 100;
+            position: fixed;
+            bottom: 40px;
+            left: 50px;
+        }
+        footer .btn {
+            pointer-events: none; 
+        }
+/* info style */
+
+.free a:link,
+        .free a:visited {
+            text-decoration: none;
+            color: green;
+            background: none;
+            font-size: 16px;
+        }
+
+        .free a:hover,
+        .free a:active {
+            color: greenyellow;
+            background-color: transparent;
+            /* Reset background color */
+        }
+
+        table {
+            width: 85%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th {
+            border: 1px solid transparent;
+            padding: 8px;
+            text-align: center;
+            width: 20%;
+            /* แบ่งเท่าๆ กัน 5 ส่วนในแต่ละคอลัมน์ */
+            font-weight: 500;
+        }
+
+        td {
+            border: 1px solid transparent;
+            /* padding: 8px; */
+            text-align: center;
+            /* width: 20%; */
+            /* แบ่งเท่าๆ กัน 5 ส่วนในแต่ละคอลัมน์ */
+            font-weight: 400;
+        }
+
+        .head-color {
+            background-color: #CFE2FF;
+        }
+
+        #study tr:nth-child(even) {
+            background-color: #f2f2f2;
+
+        }
+
+        #multimedia tr:nth-child(even) {
+            background-color: #f2f2f2;
+
+        }
+
+        #multimedia {
+            margin-top: 50px;
+
+        }
+
+        #study {
+            margin-top: 50px;
+        }
+
+
+        #date {
+            text-align: center;
+        }
+
+        .Rej {
+            color: red;
+        }
+
+        .App {
+            color: green;
+        }
+
+    </style>
+    <!-- header -->
+    <header class="navbar" id="navbg">
+        <form class="d-flex mx-5 my-3">
+            <img src="/public/img/User.png" class="mx-3" alt="usericon" width="60px" height="60px">
+            <h3 class="mt-3">Lecturer</h3>
+        </form>
+    </header>
+
+    <!-- column left button -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+
+                <ul>
+                    <!-- 1.Request room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/Request1.lec.html"
+                            id="dashboard-link">
+                            <img src="/public/img/Request.png" class="icon-nav" alt="Request"
+                                width="50px" height="50px">
+                            <span class="link-text">Request</span>
+                        </a>
+
+                    </li>
+                    <!-- 2.Dashboard button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/Dashboard.lec.html"
+                            id="history-link">
+                            <img src="/public/img/dashboard.png" class="icon-nav" alt="Dashboard" width="50px"
+                                height="50px">
+                            <span class="link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- 3.History room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/History.lec.html "
+                            id="history-link">
+                            <img src="/public/img/History.png" class="icon-nav" alt="History"
+                                width="50px" height="50px">
+                            <span class="link-text">History</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- line -->
+                <div class="vertical-line"></div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+            <div class="col-8">
+                <h1 class="Topic" >History</h1>
+                    <div class="row">
+                        <div class="col">
+                       
+                            <div class="tables-container">
+                                <div class="table-container">
+                                    <table id="multimedia">
+            
+            
+                                        <tr class="head-color">
+                                            <th>Student ID</th>
+                                            <th>Room</th>
+                                            <th>Date</th>
+                                            <th>Status</th>                                         
+                                        </tr>
+
+                                        <tr rowspan="2">
+                                          <th>65********</th>
+                                            <td>study1</td>
+                                            <td>25 March 2024 <br>8:00-10:00</td>
+                                            <td class="App">Approved</td>
+                                            
+
+                                        </tr>
+                                        <tr rowspan="2">
+                                            <th>65********</th>
+                                            <td >Study2</td>
+                                            <td  >25 March 2024 <br>08:00-10:00</td>
+                                            <td class="Rej">Rejected</td>
+                                            
+                                            
+                                        </tr>
+                                        <tr rowspan="2">
+                                            <th>65********</th>
+                                            <td >Study3 </td>
+                                            <td >25 March 2024 <br>08:00-10:00</td>
+                                            <td class="App">Approved</td>
+                                            
+                                            
+                                        </tr>
+                                        <tr rowspan="2">
+                                            <th>65********</th>
+                                            <td>Study4</td>
+                                            <td >25 March 2024 <br>08:00-10:00</td>
+                                            <td class="Rej">Rejected</td>
+                                            
+                                            
+                                        </tr>
+                                        <tr rowspan="2">
+                                          <th>65********</th>
+                                          <td>Study5</td>
+                                          <td >25 March 2024 <br>08:00-10:00</td>
+                                          <td class="free">_</td>
+                                            
+                                          
+                                      </tr>
+                                      <tr>
+                                        <th>65********</th>
+                                        <td >Study6</td>
+                                        <td  >25 March 2024 <br>08:00-10:00</td>
+                                        <td class="App">Approved</td>
+                                            
+                                        
+                                    </tr>
+                                    <tr>
+                                      <th>65********</th>
+                                      <td >Study7</td>
+                                      <td  rowspan="2">25 March 2024 <br>08:00-10:00</td>
+                                      <td class="Rej">Rejected</td>
+                                            
+                                      
+                                  </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+        </div>
+    </div>
+    <!-- Log out button -->
+    <footer>
+
+        <a href="/views/Login.html"> <img src="/public/img/logout.png" alt="logout" width="60px" height="60px"><button class="btn">
+        <h3>Log Out</h3></button></a>
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template</title>
+    <!-- chage location file again (bootstrao+ java script) -->
+    <link rel="stylesheet" href="/public/CSS/bootstrap.min.css">
+    <script src="/public/JS/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sweetalert2@11.js"></script>
+</head>
+
+<body>
+    <style>
+        .Topic {
+            position: fixed;
+            top: 60px;
+            left: 450px;
+            color: #0D6EFD;
+            font-size: 45px;
+        }
+
+        h3 {
+            font-weight: 400;
+        }
+
+        .list-group-item a:link,
+        a:visited {
+            margin-top: 20px;
+            color: black;
+            border: 2px solid none;
+            padding: 10px 20px;
+            text-align: start;
+            text-decoration: none;
+            display: inline-block;
+            width: 290px;
+            justify-content: center;
+        }
+
+        .list-group-item a:hover,
+        a:active {
+            background-color: #D9D9D9;
+        }
+
+        .link-text {
+            color: black;
+            margin-left: 15px;
+            font-size: 24px;
+        }
+
+        /* CSS สำหรับกำหนดสีและความยาวของเส้น */
+        .vertical-line {
+            border-left: 2px solid #D9D9D9;
+            height: 100%;
+            position: absolute;
+            left: 382px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            transform: translateX(-50%);
+        }
+
+        footer {
+            padding: 20px;
+            text-align: start;
+            z-index: 100;
+            position: fixed;
+            bottom: 40px;
+            left: 58px;
+        }
+
+        footer .btn {
+            pointer-events: none;
+        }
+
+        /* sryle info */
+
+        .date {
+            position: fixed;
+            top: 160px;
+            left: 1050px;
+            color: #0D6EFD;
+            font-size: 45px;
+        }
+
+
+        .date {
+            position: fixed;
+            top: 185px;
+            left: 950px;
+            color: white;
+            font-size: 45px;
+        }
+        .card {
+        background-color: #f8f9fa; /* สีพื้นหลังของการ์ด */
+        border: 1px solid #dee2e6; /* เส้นขอบของการ์ด */
+        border-radius: 10px; /* รูปร่างของการ์ด */
+        padding: 20px; /* ระยะห่างภายในการ์ด */
+        margin-bottom: 20px; /* ระยะห่างด้านล่างของการ์ด */
+    }
+
+    .card h2 {
+        font-size: 24px; /* ขนาดตัวอักษรของหัวเรื่องในการ์ด */
+        margin-bottom: 10px; /* ระยะห่างด้านล่างของหัวเรื่อง */
+    }
+
+    .card p {
+        font-size: 24px; /* ขนาดตัวอักษรของเนื้อหาในการ์ด */
+        margin-bottom: 0; /* ระยะห่างด้านล่างของเนื้อหา */
+    }
+
+    .card.cardw {
+        background-color: #007bff; /* สีพื้นหลังของการ์ดประเภทสีน้ำเงิน */
+        color: white; /* สีของตัวอักษรของการ์ดประเภทสีน้ำเงิน */
+    }
+
+  
+    .card.carda {
+        background-color: green ; /* สีพื้นหลังของการ์ดประเภทสีขาว */
+        color: white; /* สีของตัวอักษรของการ์ดประเภทสีขาว */
+    }
+    .card.cardb{
+        background-color: orange ; /* สีพื้นหลังของการ์ดประเภทสีขาว */
+        color: white; /* สีของตัวอักษรของการ์ดประเภทสีขาว */
+    }
+    .card.cardc {
+        background-color: red ; /* สีพื้นหลังของการ์ดประเภทสีขาว */
+        color: white; /* สีของตัวอักษรของการ์ดประเภทสีขาว */
+    }
+    .card.cardd {
+        background-color: grey ; /* สีพื้นหลังของการ์ดประเภทสีขาว */
+        color: white; /* สีของตัวอักษรของการ์ดประเภทสีขาว */
+    }
+
+    </style>
+    <!-- header -->
+    <header class="navbar" id="navbg">
+        <form class="d-flex mx-5 my-3">
+            <img src="/public/img/User.png" class="mx-3" alt="usericon" width="60px" height="60px">
+            <h3 class="mt-3">Lecturer</h3>
+        </form>
+    </header>
+
+    <!-- column left button -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+
+                <ul>
+                    <!-- 1.Request room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/Request1.lec.html"
+                            id="dashboard-link">
+                            <img src="/public/img/Request.png" class="icon-nav" alt="Request"
+                                width="50px" height="50px">
+                            <span class="link-text">Request</span>
+                        </a>
+
+                    </li>
+                    <!-- 2.Dashboard button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/Dashboard.lec.html"
+                            id="history-link">
+                            <img src="/public/img/dashboard.png" class="icon-nav" alt="Dashboard" width="50px"
+                                height="50px">
+                            <span class="link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- 3.History room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/History.lec.html "
+                            id="history-link">
+                            <img src="/public/img/History.png" class="icon-nav" alt="History"
+                                width="50px" height="50px">
+                            <span class="link-text">History</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- line -->
+                <div class="vertical-line"></div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+            <div class="col mt-5">
+                <h1 class="Topic">Dashboard shows room</h1>
+                <div class="row mt-8">
+                    <div class="col-8">
+                        <div class="col">
+                          
+                                <div class="card cardw">
+                                    <h2>Today Slot</h2>
+                                    <p>44</p>
+                          
+                                <div class="col">
+                                    <h1 class="date" id="date"></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-4">
+                        <div class="card card">
+                            <h2>Multimedia Slot</h2>
+                            <p>16</p>
+                        </div>
+                    </div>
+                    <div class="col-4 ">
+                        <div class="card card">
+                            <h2>Study Slot</h2>
+                            <p>28</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-2">
+                        <div class="card carda">
+                            <h2>Free <br> Slot</h2>
+                            <p>24</p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="card cardb">
+                            <h2>Pending Slot</h2>
+                            <p>11</p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="card cardc">
+                            <h2>Reserved Slot</h2>
+                            <p>9</p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="card cardd">
+                            <h2>Disabled Slot</h2>
+                            <p>0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+            <!-- Log out button -->
+            <footer>
+                <a href="/views/Login.html"> <img src="/public/img/logout.png" alt="logout" width="60px"
+                        height="60px"><button class="btn">
+                        <h3>Log Out</h3>
+                    </button></a>
+            </footer>
+            <!-- *******************************  script  ******************************** -->
+            <script>
+                var clickedDate = localStorage.getItem('clickedDate');
+                document.getElementById('date').textContent = clickedDate;
+            </script>
+
+
+</body>
+
+</html>

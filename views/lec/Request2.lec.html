@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <!-- chage location file again (bootstrao+ java script) -->
+    <link rel="stylesheet" href="/public/CSS/bootstrap.min.css">
+    <script src="/public/JS/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sweetalert2@11.js"></script>
+</head>
+
+<body>
+    <style>
+        .Topic {
+            position: fixed;
+            top: 60px;
+            left: 450px;
+            color: #0D6EFD;
+            font-size: 45px;
+        }
+
+        h3 {
+            font-weight: 400;
+        }
+
+        .list-group-item a:link,
+        a:visited {
+            margin-top: 20px;
+            color: black;
+            border: 2px solid none;
+            padding: 10px 20px;
+            text-align: start;
+            text-decoration: none;
+            display: inline-block;
+            width: 290px;
+            justify-content: center;
+        }
+
+        .list-group-item a:hover,
+        a:active {
+            background-color: #D9D9D9;
+        }
+
+        .link-text {
+            color: black;
+            margin-left: 15px;
+            font-size: 24px;
+        }
+
+        /* CSS สำหรับกำหนดสีและความยาวของเส้น */
+        .vertical-line {
+            border-left: 2px solid #D9D9D9;
+            height: 100%;
+            position: absolute;
+            left: 382px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            transform: translateX(-50%);
+        }
+
+        footer {
+            padding: 20px;
+            text-align: start;
+            z-index: 100;
+            position: fixed;
+            bottom: 40px;
+            left: 50px;
+        }
+
+        footer .btn {
+            pointer-events: none;
+        }
+
+        /* style info */
+        .Position {
+            font-size: 25px;
+            margin-top: 25px;
+        }
+    </style>
+    <!-- header -->
+    <header class="navbar" id="navbg">
+        <form class="d-flex mx-5 my-3">
+            <img src="/public/img/User.png" class="mx-3" alt="usericon" width="60px" height="60px">
+            <h3 class="mt-3">Lecturer</h3>
+        </form>
+    </header>
+
+    <!-- column left button -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+
+                <ul>
+                    <!-- 1.Request room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/Request1.lec.html"
+                            id="dashboard-link">
+                            <img src="/public/img/Request.png" class="icon-nav" alt="Request"
+                                width="50px" height="50px">
+                            <span class="link-text">Request</span>
+                        </a>
+
+                    </li>
+                    <!-- 2.Dashboard button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/Dashboard.lec.html"
+                            id="history-link">
+                            <img src="/public/img/dashboard.png" class="icon-nav" alt="Dashboard" width="50px"
+                                height="50px">
+                            <span class="link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- 3.History room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/lec/History.lec.html "
+                            id="history-link">
+                            <img src="/public/img/History.png" class="icon-nav" alt="History"
+                                width="50px" height="50px">
+                            <span class="link-text">History</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- line -->
+                <div class="vertical-line"></div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+
+
+
+
+            <div class="col-8">
+                <div class="">
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h1 class="Topic" id="date"></h1>
+                        <div class="Position">
+                            <div class="container">
+                                <!-- Request form detail -->
+                                <div class="container">
+                                    <div class="row">
+                                        <label class="col-sm-3 col-form-label">Room Name:</label>
+                                        <div class="col-sm-9 mt-2">
+                                            <span id="roomName"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-3 col-form-label">Time Slot:</label>
+                                        <div class="col-sm-9 mt-2">
+                                            <span id="timeSlot"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="objectiveSelect" class="col-sm-3 col-form-label">Objective:</label>
+                                        <div class="col-sm-9 mt-2">
+                                          <span>Meeting</span>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- button -->
+                                    <div class="row mb-3">
+                                        <div class="mt-4">
+                                            <a onclick="pending()" class="btn btn-success">Approve</a>
+                                            <a class="btn btn-danger">Reject</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <!-- ***************************************   info  ***************************************** -->
+    </div>
+    </div>
+    <!-- Log out button -->
+    <footer>
+
+        <a href="/views/Login.html"> <img src="/public/img/logout.png" alt="logout" width="60px" height="60px"><button
+                class="btn">
+                <h3>Log Out</h3>
+            </button></a>
+    </footer>
+    <!-- *******************************  script  ******************************** -->
+    <script>
+        // Retrieve data from localStorage
+        var clickedRoomName = localStorage.getItem('clickedRoomName');
+        var clickedTimeSlot = localStorage.getItem('clickedTimeSlot');
+        var clickedDate = localStorage.getItem('clickedDate');
+        var objectives = ["-", "Meeting", "Research / Doing Project", "Studying", "Watching Movies"];
+
+        // Do something with the retrieved data, such as displaying it on the page
+        document.getElementById('roomName').textContent = clickedRoomName;
+        document.getElementById('timeSlot').textContent = clickedTimeSlot;
+        document.getElementById('date').textContent = clickedDate;
+
+        // Function to populate select elements
+        function populateSelect(selectElement, options) {
+            options.forEach(function (option, index) {
+                var optionElement = document.createElement("option");
+                optionElement.value = index + 1; // Index starts from 0, so add 1 to make it 1-based
+                optionElement.textContent = option;
+                selectElement.appendChild(optionElement);
+            });
+        }
+
+        // Populate the objective select element
+        populateSelect(document.getElementById("objectiveSelect"), objectives);
+    </script>
+
+    <!-- Script for Swal.fire -->
+    <script>
+       
+
+        // Function to show "Pending" alert
+        function pending() {
+            Swal.fire({
+                title: 'Successful',
+                html: 'Please wait for confirmation.',
+                icon: "success",
+                imageWidth: 100,
+                imageAlt: 'Custom Image',
+                showCloseButton: true,
+                showCancelButton: false,
+                focusConfirm: false,
+                customClass: {
+                    title: 'titleText',
+                }
+            });
+            // get data this 
+
+        }
+    </script>
+
+</body>
+
+</html>

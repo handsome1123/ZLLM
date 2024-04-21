@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template</title>
+    <!-- chage location file again (bootstrao+ java script) -->
+    <link rel="stylesheet" href="/public/CSS/bootstrap.min.css">
+    <script src="/public/JS/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sweetalert2@11.js"></script>
+</head>
+<body>
+    <style>
+        .Topic{
+            position: fixed;
+            top: 60px;
+            left: 450px;
+            color: #0D6EFD;
+            font-size: 45px;
+        }
+        h3 {
+            font-weight: 400;
+        }
+        .list-group-item a:link,
+        a:visited {
+            margin-top: 20px;
+            color: black;
+            border: 2px solid none;
+            padding: 10px 20px;
+            text-align: start;
+            text-decoration: none;
+            display: inline-block;
+            width: 290px;
+            justify-content: center;
+        }
+        .list-group-item a:hover,
+        a:active {
+            background-color: #D9D9D9;
+        }
+        .link-text {
+            color: black;
+            margin-left: 15px;
+            font-size: 24px;
+        }
+        /* CSS สำหรับกำหนดสีและความยาวของเส้น */
+        .vertical-line {
+            border-left: 2px solid #D9D9D9;
+            height: 100%;
+            position: absolute;
+            left: 382px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            transform: translateX(-50%);
+        }
+        footer {
+            padding: 20px;
+            text-align: start;
+            z-index: 100;
+            position: fixed;
+            bottom: 40px;
+            left: 50px;
+        }
+        footer .btn {
+            pointer-events: none; 
+        }
+    </style>
+    <!-- header -->
+    <header class="navbar" id="navbg">
+        <form class="d-flex mx-5 my-3">
+            <img src="/public/img/User.png" class="mx-3" alt="usericon" width="60px" height="60px">
+            <h3 class="mt-3">Student</h3>
+        </form>
+    </header>
+
+    <!-- column left button -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+
+                <ul>
+                    <!-- 1.Browse room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/stu/Reservation1.stu.html" id="management-link">
+                            <img src="/public/img/Browse room.png" class="icon-nav" alt="Browse room" width="50px"
+                                height="50px">
+                            <span class="link-text">Reservation</span>
+                        </a>
+                    </li>
+
+
+                    <!-- 3.Status button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/stu/Status.stu.html" id="history-link">
+                            <img src="/public/img/Status.png" class="icon-nav" alt="Status" width="50px" height="50px">
+                            <span class="link-text">Status</span>
+                        </a>
+                    </li>
+                    <!-- 4.History room button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/stu/History.stu.html" id="history-link">
+                            <img src="/public/img/History.png" class="icon-nav" alt="Status" width="50px" height="50px">
+                            <span class="link-text">History</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- line -->
+                <div class="vertical-line"></div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+            <div class="col-8">
+                <h1 class="Topic" >Check the request status</h1>
+                <div class="row mt-5">
+                    <div class="col">
+                        <!-- Main content here -->
+                        <div class="card w-75 mb-3 shadow border-dark">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h3 style="text-align: left; width:49%; display: inline-block;">Room status</h3>
+                                    <h2 style="text-align: right; width:50%;  display: inline-block; color: #0D6EFD;">
+                                        Pending</h2>
+                                </div>
+                                <div class="card-text">
+                                    <p style="text-align: left; width:49%; display: inline-block;">Date</p>
+                                    <p style="text-align: right; width:50%; display: inline-block;">25 March 2024</p>
+                                    <p style="text-align: left; width:49%; display: inline-block;">Time</p>
+                                    <p style="text-align: right; width:50%; display: inline-block;">08:00 - 10:00</p>
+                                    <p style="text-align: left; width:49%; display: inline-block;">Room</p>
+                                    <p style="text-align: right; width:50%; display: inline-block;">Study 1</p>
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+        </div>
+    </div>
+    <!-- Log out button -->
+    <footer>
+
+        <a href="/views/Login.html"> <img src="/public/img/logout.png" alt="logout" width="60px" height="60px"><button class="btn">
+        <h3>Log Out</h3></button></a>
+    </footer>
+
+
+</body>
+
+</html>

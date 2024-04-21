@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <!-- chage location file again (bootstrao+ java script) -->
+    <link rel="stylesheet" href="/public/CSS/bootstrap.min.css">
+    <script src="/public/JS/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sweetalert2@11.js"></script>
+</head>
+
+<body>
+    <style>
+        /* input to Topic for fixed position */
+        /* .Topic {
+            position: fixed;
+            top: 60px;
+            left: 450px;
+            color: #0D6EFD;
+            font-size: 45px;
+        } */
+
+        h3 {
+            font-weight: 400;
+        }
+
+        .list-group-item a:link,
+        a:visited {
+            margin-top: 20px;
+            color: black;
+            border: 2px solid none;
+            padding: 10px 20px;
+            text-align: start;
+            text-decoration: none;
+            display: inline-block;
+            width: 290px;
+            justify-content: center;
+        }
+
+        .list-group-item a:hover,
+        a:active {
+            background-color: #D9D9D9;
+        }
+
+        .link-text {
+            color: black;
+            margin-left: 15px;
+            font-size: 24px;
+        }
+
+        /* CSS สำหรับกำหนดสีและความยาวของเส้น */
+        .vertical-line {
+            border-left: 2px solid #D9D9D9;
+            height: 100%;
+            position: absolute;
+            left: 382px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            transform: translateX(-50%);
+        }
+
+        footer {
+            padding: 20px;
+            text-align: start;
+            z-index: 100;
+            position: fixed;
+            bottom: 40px;
+            left: 50px;
+        }
+
+        footer .btn {
+            pointer-events: none;
+        }
+
+        /* style for table */
+        .box ul {
+            list-style-type: none;
+        }
+
+        table {
+            width: 75%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid transparent;
+            padding: 8px;
+            text-align: center;
+            width: 20%;
+            /* แบ่งเท่าๆ กัน 5 ส่วนในแต่ละคอลัมน์ */
+        }
+
+        .head-color {
+            background-color: #CFE2FF;
+        }
+
+        #study tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #multimedia tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #multimedia {
+            margin-top: 50px;
+        }
+
+        #study {
+            margin-top: 50px;
+        }
+
+        .namesystemDate {
+            position: fixed;
+            top: 60px;
+            left: 450px;
+            color: #0D6EFD;
+            font-size: 45px;
+        }
+
+        #date {
+            text-align: center;
+        }
+
+        .free a:link,
+        a:visited {
+            text-decoration: none;
+            color: green;
+        }
+
+        .free a:hover,
+        a:active {
+            color: greenyellow;
+        }
+
+        /* Styles for different status */
+        .free {
+            color: green;
+        }
+
+        .disabled {
+            color: grey;
+        }
+
+        .pending {
+            color: slateblue;
+        }
+
+        .reserved {
+            color: red;
+        }
+
+        /* **********/
+        .Position {
+            font-size: 24px;
+        }
+
+        /* script */
+        #add {
+            position: fixed;
+            top: 60px;
+            right: 80px;
+        }
+    </style>
+    <!-- header -->
+    <header class="navbar" id="navbg">
+        <form class="d-flex mx-5 my-3">
+            <img src="/public/img/User.png" class="mx-3" alt="usericon" width="60px" height="60px">
+            <h3 class="mt-3">Staff</h3>
+        </form>
+    </header>
+
+    <!-- column left button -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+
+                <ul>
+                    <!-- 1.Management button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/Sta/Management.sta.html" id="history-link">
+                            <img src="/public/img/Management.png" class="icon-nav" alt="Management" width="50px"
+                                height="50px">
+                            <span class="link-text">Management</span>
+                        </a>
+                    </li>
+
+                    <!-- 2.Dashboard button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/sta/Dashboard.sta.html" id="history-link">
+                            <img src="/public/img/dashboard.png" class="icon-nav" alt="Dashboard" width="50px"
+                                height="50px">
+                            <span class="link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- 3.History button -->
+                    <li class="list-group-item">
+                        <a style="display: inline-block" href="/views/Sta/History.sta.html" id="history-link">
+                            <img src="/public/img/History.png" class="icon-nav" alt="History" width="50px"
+                                height="50px">
+                            <span class="link-text">History</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- line -->
+                <div class="vertical-line"></div>
+            </div>
+            <!-- ***************************************   info  ***************************************** -->
+            <div class="col-8">
+                <h1 class="namesystemDate"></h1>
+                <div class="row">
+                    <div class="col">
+
+                        <div class="tables-container">
+                            <div class="table-container">
+                                <table id="multimedia">
+                                    <tr class="head-color">
+                                        <th>Date/Time</th>
+                                        <th>08:00-10:00</th>
+                                        <th>10:00-12:00</th>
+                                        <th>13:00-15:00</th>
+                                        <th>15:00-17:00</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="table-container">
+                                <table id="study">
+                                    <tr class="head-color">
+                                        <th>Date/Time</th>
+                                        <th>08:00-10:00</th>
+                                        <th>10:00-12:00</th>
+                                        <th>13:00-15:00</th>
+                                        <th>15:00-17:00</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add button -->
+                <a id="add" class="btn btn-primary" onclick="showConfirmation()">Add</a>
+
+            </div>
+
+
+
+            <!-- ***************************************   info  ***************************************** -->
+        </div>
+    </div>
+    <!-- Log out button -->
+    <footer>
+
+        <a href="/views/Login.html"> <img src="/public/img/logout.png" alt="logout" width="60px" height="60px"><button
+                class="btn">
+                <h3>Log Out</h3>
+            </button></a>
+    </footer>
+
+   <!-- ******************************************   script  ************************************************* -->
+<script>
+    // Function to format date as "DD Month YYYY" e.g., "02 April 2024"
+    function formatDate(date) {
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+        return day + " " + month + " " + year;
+    }
+
+    // Get the current date
+    var currentDate = new Date();
+
+    // Format the current date
+    var formattedDate = formatDate(currentDate);
+
+    // Display the formatted date
+    document.querySelector('.namesystemDate').textContent = formattedDate;
+
+    // Example data for Multimedia and Study rooms
+    var multimediaData = [
+        ["Multimedia 1", "Free", "Free", "Free", "Free"],
+        ["Multimedia 2", "Free", "Disabled", "Free", "Reserved"],
+        ["Multimedia 3", "Free", "Reserved", "Disabled", "Pending"],
+        ["Multimedia 4", "Free", "Disabled", "Free", "Reserved"]
+    ];
+
+    var studyData = [
+        ["Study 1", "Free", "Free", "Free", "Free"],
+        ["Study 2", "Free", "Disabled", "Free", "Reserved"],
+        ["Study 3", "Free", "Reserved", "Disabled", "Pending"],
+        ["Study 4", "Free", "Disabled", "Free", "Reserved"]
+    ];
+
+    // Function to generate table rows dynamically
+    function generateTableRows(tableId, data) {
+        var table = document.getElementById(tableId);
+        for (var i = 0; i < data.length; i++) {
+            var row = table.insertRow();
+            for (var j = 0; j < data[i].length; j++) {
+                var cell = row.insertCell();
+                if (j === 0) {
+                    cell.innerHTML = '<a href="#" onclick="handleRoomClick(\'' + data[i][j] + '\')">' + data[i][j] + '</a>';
+                } else {
+                    if (data[i][j] === "Free") {
+                        cell.innerHTML = '<a class="free" href="#">Free</a>';
+                    } else if (data[i][j] === "Disabled") {
+                        cell.innerHTML = '<span class="disabled">Disabled</span>';
+                    } else if (data[i][j] === "Pending") {
+                        cell.innerHTML = '<span class="pending">Pending</span>';
+                    } else if (data[i][j] === "Reserved") {
+                        cell.innerHTML = '<span class="reserved">Reserved</span>';
+                    }
+                }
+            }
+        }
+    }
+    // Generate rows for Multimedia and Study tables
+    generateTableRows("multimedia", multimediaData);
+    generateTableRows("study", studyData);
+
+    localStorage.setItem('multimediaData', JSON.stringify(multimediaData));
+    localStorage.setItem('studyData', JSON.stringify(studyData));
+    localStorage.setItem('formattedDate', formattedDate);
+
+    // Function to handle click on room names
+    function handleRoomClick(roomName) {
+        if (roomName.includes("Free")) {
+            Swal.fire({
+                title: "Room Clicked",
+                text: "You clicked on a Free room: " + roomName,
+                icon: "info",
+                confirmButtonText: "Close"
+            });
+        } else {
+            Swal.fire({
+                title: "Room Clicked",
+                text: "You clicked on " + roomName,
+                icon: "info",
+                confirmButtonText: "Close"
+            });
+        }
+    }
+    
+
+    // -----add button function---------
+    function showConfirmation() {
+        Swal.fire({
+            title: "Add New Room",
+            html: '<input id="roomName" class="swal2-input" placeholder="Enter room name">',
+            showCancelButton: true,
+            cancelButtonText: "Close",
+            cancelButtonColor: "#6C757D",
+            confirmButtonText: "Save",
+            confirmButtonColor: "#0D6EFD"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, get the value of the input field
+                const roomName = document.getElementById('roomName').value;
+                // Perform action here with the room name, e.g., add it to a list
+                console.log("Room Name: ", roomName);
+            }
+        });
+    }
+</script>
+</body>
+
+</html>
